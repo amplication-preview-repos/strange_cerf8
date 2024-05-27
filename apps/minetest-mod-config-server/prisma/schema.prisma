@@ -1,0 +1,43 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DB_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model WaterLayer {
+  createdAt DateTime @default(now())
+  depth     Int?
+  id        String   @id @default(cuid())
+  salinity  Int?
+  updatedAt DateTime @updatedAt
+}
+
+model WorldConfig {
+  createdAt    DateTime  @default(now())
+  creationDate DateTime?
+  description  String?
+  id           String    @id @default(cuid())
+  updatedAt    DateTime  @updatedAt
+  worldName    String?
+}
+
+model PlayerSettings {
+  createdAt   DateTime  @default(now())
+  id          String    @id @default(cuid())
+  lastLogin   DateTime?
+  playerName  String?
+  preferences Json?
+  updatedAt   DateTime  @updatedAt
+}
+
+model StoneSpike {
+  createdAt DateTime @default(now())
+  height    Int?
+  id        String   @id @default(cuid())
+  material  String?
+  updatedAt DateTime @updatedAt
+  width     Int?
+}
